@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+
+
+  <ItemGroup>
+    <Compile Remove="Models\EmptyClass.cs" />
+    <Compile Remove="Views\Login\Index.cs" />
+    <Compile Remove="Controllers\RegisterController.cs" />
+    <Compile Remove="Controllers\LoginController.cs" />
+    <Compile Remove="Repository\UserRepositoryFactory.cs" />
+    <Compile Remove="Repository\UserRepository.cs" />
+    <Compile Remove="Entities\Client.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Context\" />
+    <Folder Include="Repository\" />
+    <Folder Include="Views\User\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Views\Course\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="EntityFramework" Version="6.4.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\Home\Privacy.cshtml" />
+    <Content Remove="Views\Register\Index %28копировать%29.cshtml" />
+    <Content Remove="Views\Register\Index %28копировать%29.cshtml" />
+    <Content Remove="Views\Course\Index.razor" />
+  </ItemGroup>
+</Project>

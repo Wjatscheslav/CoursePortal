@@ -1,0 +1,35 @@
+﻿<Properties StartupConfiguration="{C2D89A42-A2BB-41FD-914E-374E230FCC60}|Default">
+  <MonoDevelop.Ide.ItemProperties.CoursePortal PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="CoursePortal/Controllers/CourseController.cs">
+    <Files>
+      <File FileName="CoursePortal/Views/Course/AddCourse.cshtml" Line="5" Column="12" />
+      <File FileName="CoursePortal/Views/User/Login.cshtml" Line="11" Column="26" />
+      <File FileName="CoursePortal/Controllers/CourseController.cs" Line="45" Column="21" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="CoursePortal" expanded="True">
+            <Node name="CoursePortal" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="CourseController.cs" selected="True" />
+              </Node>
+              <Node name="Entities" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Course" expanded="True" />
+                <Node name="User" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
