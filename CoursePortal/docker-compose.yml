@@ -1,0 +1,21 @@
+version: '3.3'
+services:
+
+  db:
+    build:
+      context: ./docker/db/
+      dockerfile: Dockerfile
+    ports:
+      - "5433:1433"
+    environment:
+      SA_PASSWORD: "#assw@!d1"
+      ACCEPT_EULA: "Y"
+    healthcheck:
+      test: sqlcmd -S 127.0.0.1 -U SA -P '#assw@!d1' -Q 'select 1'
+    networks:
+      - task
+        #    command: bash -c "sqlcmd -S 127.0.0.1 -U SA -P '#assw@!d1' -Q 'CREATE DATABASE ETL'"
+
+networks:
+  task:
+    driver: bridge
