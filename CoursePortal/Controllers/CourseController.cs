@@ -4,24 +4,40 @@ using System.Linq;
 using CoursePortal.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using CoursePortal.Repository;
+
 
 namespace CoursePortal.Controllers
 {
     public class CourseController : Controller
     {
+
+        private SubscriberRepository subscriberRepository;
+        private AuthorRepository authorRepository;
+
+        public CourseController(SubscriberRepository subscriberRepository,
+            AuthorRepository authorRepository)
+        {
+            this.authorRepository = authorRepository;
+            this.subscriberRepository = subscriberRepository;
+        }
         public IActionResult SubscriberIndex()
         {
-            // get subscriber which is authenticated
+            int userId = BitConverter.ToInt32(HttpContext.Session.Get("userId"));
+            Subscriber subscriber = subscriberRepository.FindById(userId);
+           
             User user = new User();
-            user.Name = "Subscriber";
+            user.Name = subscriber.Name;
             return View(user);
         }
 
         public IActionResult AuthorIndex()
         {
-            // get user which is authenticated
+            int userId = BitConverter.ToInt32(HttpContext.Session.Get("userId"));
+            Author author = authorRepository.FindById(userId);
+
             User user = new User();
-            user.Name = "Author";
+            user.Name = author.Name;
             return View(user);
         }
 

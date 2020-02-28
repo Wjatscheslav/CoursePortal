@@ -1,12 +1,13 @@
 ﻿using System;
 using CoursePortal.Context;
 using CoursePortal.Models;
+using System.Linq;
 
 namespace CoursePortal.Repository
 {
     public class SubscriberRepository
     {
-        private readonly CourseContext _courseContext;
+        private CourseContext _courseContext;
 
         public SubscriberRepository(CourseContext courseContext)
         {
@@ -19,6 +20,15 @@ namespace CoursePortal.Repository
             _courseContext.SaveChanges();
 
             return createdSubscriber;
+        }
+        public Subscriber FindById(int id)
+        {
+            return _courseContext.Subscribers.Where(subs => subs.Id == id).SingleOrDefault();
+        }
+
+        public Subscriber FindByLogin(string login)
+        {
+            return _courseContext.Subscribers.Where(subs => subs.Login == login).SingleOrDefault();
         }
     }
 

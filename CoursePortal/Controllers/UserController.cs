@@ -3,11 +3,22 @@ using System.Collections.Generic;
 using CoursePortal.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using CoursePortal.Repository;
 
 namespace CoursePortal.Controllers
 {
     public class UserController : Controller
     {
+
+        private SubscriberRepository subscriberRepository;
+        private AuthorRepository authorRepository;
+
+        public UserController(SubscriberRepository subscriberRepository,
+            AuthorRepository authorRepository)
+        {
+            this.authorRepository = authorRepository;
+            this.subscriberRepository = subscriberRepository;
+        }
 
         public IActionResult Login()
         {
@@ -19,28 +30,29 @@ namespace CoursePortal.Controllers
         {
             try
             {
-                User user = new User();
-                user.Login = collection["Login"];
-                user.Password = collection["Password"];
+                string login = collection["Login"];
+                string password = collection["Password"];
+                bool isAuth = Convert.ToBoolean(collection["isAuthor"].ToString().Split(',')[0]);
 
-                // Temporary statement for testing
-                if (user.Login == "author")
+                if (isAuth)
                 {
-                    user.isAuthor = true;
+                    Author author = authorRepository.FindByLogin(login);
+                    if (author.Password == password)
+                    {
+                        HttpContext.Session.Set("userId", BitConverter.GetBytes(author.Id));
+                        return RedirectToAction("AuthorIndex", "Course");
+                    }
+                    return View();
                 }
                 else
                 {
-                    user.isAuthor = false;
-                }
-
-                // Add logic for checking login information and authentication
-                if (user.isAuthor)
-                {
-                    return RedirectToAction("AuthorIndex", "Course");
-                }
-                else
-                {
-                    return RedirectToAction("SubscriberIndex", "Course");
+                    Subscriber subscriber = subscriberRepository.FindByLogin(login);
+                    if (subscriber.Password == password)
+                    {
+                        HttpContext.Session.Set("userId", BitConverter.GetBytes(subscriber.Id));
+                        return RedirectToAction("SubscriberIndex", "Course");
+                    }
+                    return View();
                 }
             }
             catch
@@ -59,15 +71,23 @@ namespace CoursePortal.Controllers
         {
             try
             {
-                User user = new User();
-                user.Name = collection["Name"];
-                user.Login = collection["Login"];
-                user.Password = collection["Password"];
-                bool isAuth;
-                bool.TryParse(collection["isAuthor"], out isAuth);
-                user.isAuthor = isAuth;
-
-                // Add saving user to DB
+                bool isAuth = Convert.ToBoolean(collection["isAuthor"].ToString().Split(',')[0]);
+                if (isAuth)
+                {
+                    Author author = new Author();
+                    author.Name = collection["Name"];
+                    author.Login = collection["Login"];
+                    author.Password = collection["Password"];
+                    authorRepository.Create(author);
+                }
+                else
+                {
+                    Subscriber subscriber = new Subscriber();
+                    subscriber.Name = collection["Name"];
+                    subscriber.Login = collection["Login"];
+                    subscriber.Password = collection["Password"];
+                    subscriberRepository.Create(subscriber);
+                }
 
                 return RedirectToAction("Index", "Home");
             }
@@ -76,34 +96,5 @@ namespace CoursePortal.Controllers
                 return View();
             }
         }
-
-
-
-        public List<User> GetEmployeeList()
-        {
-            return new List<User>{
-      new User{
-          Id = 1,
-          Login = "L1",
-          Password = "P1",
-          Name = "Angelika"
-      },
-
-      new User{
-          Id = 2,
-          Login = "L2",
-          Password = "P2",
-          Name = "Leila"
-      },
-                new User{
-          Id = 3,
-          Login = "L3",
-          Password = "P3",
-          Name = "Zhanna"
-      }
-
-   };
-        }
-
     }
 }

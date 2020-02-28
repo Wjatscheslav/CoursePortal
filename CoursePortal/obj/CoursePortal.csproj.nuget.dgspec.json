@@ -1,25 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "/Users/viacheslav/Documents/CoursePortal/CoursePortal/CoursePortal.csproj": {}
+    "C:\\Users\\user\\Documents\\CoursePortal\\CoursePortal\\CoursePortal.csproj": {}
   },
   "projects": {
-    "/Users/viacheslav/Documents/CoursePortal/CoursePortal/CoursePortal.csproj": {
+    "C:\\Users\\user\\Documents\\CoursePortal\\CoursePortal\\CoursePortal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/viacheslav/Documents/CoursePortal/CoursePortal/CoursePortal.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Documents\\CoursePortal\\CoursePortal\\CoursePortal.csproj",
         "projectName": "CoursePortal",
-        "projectPath": "/Users/viacheslav/Documents/CoursePortal/CoursePortal/CoursePortal.csproj",
-        "packagesPath": "/Users/viacheslav/.nuget/packages/",
-        "outputPath": "/Users/viacheslav/Documents/CoursePortal/CoursePortal/obj/",
+        "projectPath": "C:\\Users\\user\\Documents\\CoursePortal\\CoursePortal\\CoursePortal.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\Documents\\CoursePortal\\CoursePortal\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/Users/viacheslav/.config/NuGet/NuGet.Config"
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -63,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.101/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
