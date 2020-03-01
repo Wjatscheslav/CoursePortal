@@ -19,7 +19,6 @@ namespace CoursePortal.Controllers
         private SubscriptionRepository subscriptionRepository;
         private SubjectRepository subjectRepository;
 
-
         public CourseController(SubscriberRepository subscriberRepository,
             AuthorRepository authorRepository, CourseRepository courseRepository, 
             SubscriptionRepository subscriptionRepository, SubjectRepository subjectRepository)
@@ -88,12 +87,16 @@ namespace CoursePortal.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddCourse(IFormCollection collection)
+        public IActionResult AddCourse(CourseModel courseModel)
         {
-            Subject subject = subjectRepository.FindByName(collection["SubjectName"]);
+            if (!ModelState.IsValid)
+            {
+                return View(courseModel);
+            }
+            Subject subject = subjectRepository.FindByName(courseModel.SubjectName);
             Course course = new Course();
-            course.Name = collection["Name"];
-            course.Description = collection["Description"];
+            course.Name = courseModel.Name;
+            course.Description = courseModel.Description;
             course.AuthorId = BitConverter.ToInt32(HttpContext.Session.Get("userId"));
             Author author = authorRepository.Read(course.AuthorId);
             course.SubjectId = subject.Id;

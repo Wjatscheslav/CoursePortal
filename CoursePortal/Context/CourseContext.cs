@@ -20,7 +20,6 @@ namespace CoursePortal.Context
                 .HasRequired(course => course.Author)
                 .WithMany(author => author.Courses)
                 .HasForeignKey(course => course.AuthorId);
-//                .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<Course>()
                 .HasRequired(course => course.Subject)
@@ -38,19 +37,16 @@ namespace CoursePortal.Context
                 .HasRequired(subscription => subscription.Subscriber)
                 .WithMany(subscriber => subscriber.Subscriptions)
                 .HasForeignKey(subscription => subscription.SubscriberId);
-     //           .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<Subscriber>()
                 .HasMany(subs => subs.Subscriptions)
                 .WithRequired(subscription => subscription.Subscriber)
                 .HasForeignKey(subscription => subscription.SubscriberId);
-      //          .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Author>()
                 .HasMany(auth => auth.Courses)
                 .WithRequired(course => course.Author)
                 .HasForeignKey(course => course.AuthorId);
-//                .WillCascadeOnDelete(false);
 
         }
     }

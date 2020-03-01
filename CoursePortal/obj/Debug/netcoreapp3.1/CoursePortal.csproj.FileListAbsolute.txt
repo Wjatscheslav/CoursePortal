@@ -140,3 +140,4 @@ C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\Course
 C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\CoursePortal.csproj.CopyComplete
 C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\staticwebassets\CoursePortal.StaticWebAssets.Manifest.cache
 C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\staticwebassets\CoursePortal.StaticWebAssets.xml
+C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\CoursePortal.csprojAssemblyReference.cache

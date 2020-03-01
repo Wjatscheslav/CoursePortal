@@ -1,5 +1,6 @@
 ﻿using System;
 using CoursePortal.Entities;
+using CoursePortal.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using CoursePortal.Repository;
@@ -25,12 +26,12 @@ namespace CoursePortal.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(IFormCollection collection)
+        public ActionResult Login(User user)
         {
             try
             {
-                string login = collection["Login"];
-                string password = collection["Password"];
+                string login = user.Login;
+                string password = user.Password;
 
                 Author author = authorRepository.FindByLogin(login);
                 if (author != null)
@@ -41,7 +42,11 @@ namespace CoursePortal.Controllers
                         HttpContext.Session.Set("isAuth", BitConverter.GetBytes(true));
                         return RedirectToAction("AuthorIndex", "Course");
                     }
-                }                
+                    else
+                    {
+                        ModelState.AddModelError(user.Password, "Login or password is incorrect");
+                    }
+                }
                 Subscriber subscriber = subscriberRepository.FindByLogin(login);
                 if (subscriber != null)
                 {
@@ -51,12 +56,16 @@ namespace CoursePortal.Controllers
                         HttpContext.Session.Set("isAuth", BitConverter.GetBytes(false));
                         return RedirectToAction("SubscriberIndex", "Course");
                     }
+                    else
+                    {
+                        ModelState.AddModelError(user.Password, "Login or password is incorrect");
+                    }
                 }
-                return View();
+                return View(user);
             }
             catch
             {
-                return View();
+                return View(user);
             }
         }
 
@@ -66,25 +75,28 @@ namespace CoursePortal.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(IFormCollection collection)
+        public IActionResult Register(User user)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(user);
+            }
             try
             {
-                bool isAuth = Convert.ToBoolean(collection["isAuthor"].ToString().Split(',')[0]);
-                if (isAuth)
+                if (user.isAuthor)
                 {
                     Author author = new Author();
-                    author.Name = collection["Name"];
-                    author.Login = collection["Login"];
-                    author.Password = collection["Password"];
+                    author.Name = user.Name;
+                    author.Login = user.Login;
+                    author.Password = user.Password;
                     authorRepository.Create(author);
                 }
                 else
                 {
                     Subscriber subscriber = new Subscriber();
-                    subscriber.Name = collection["Name"];
-                    subscriber.Login = collection["Login"];
-                    subscriber.Password = collection["Password"];
+                    subscriber.Name = user.Name;
+                    subscriber.Login = user.Login;
+                    subscriber.Password = user.Password;
                     subscriberRepository.Create(subscriber);
                 }
 
@@ -92,7 +104,7 @@ namespace CoursePortal.Controllers
             }
             catch
             {
-                return View();
+                return View(user);
             }
         }
     }
