@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using CoursePortal.Models;
+using CoursePortal.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using CoursePortal.Repository;
@@ -32,28 +31,28 @@ namespace CoursePortal.Controllers
             {
                 string login = collection["Login"];
                 string password = collection["Password"];
-                bool isAuth = Convert.ToBoolean(collection["isAuthor"].ToString().Split(',')[0]);
 
-                if (isAuth)
+                Author author = authorRepository.FindByLogin(login);
+                if (author != null)
                 {
-                    Author author = authorRepository.FindByLogin(login);
                     if (author.Password == password)
                     {
                         HttpContext.Session.Set("userId", BitConverter.GetBytes(author.Id));
+                        HttpContext.Session.Set("isAuth", BitConverter.GetBytes(true));
                         return RedirectToAction("AuthorIndex", "Course");
                     }
-                    return View();
-                }
-                else
+                }                
+                Subscriber subscriber = subscriberRepository.FindByLogin(login);
+                if (subscriber != null)
                 {
-                    Subscriber subscriber = subscriberRepository.FindByLogin(login);
                     if (subscriber.Password == password)
                     {
                         HttpContext.Session.Set("userId", BitConverter.GetBytes(subscriber.Id));
+                        HttpContext.Session.Set("isAuth", BitConverter.GetBytes(false));
                         return RedirectToAction("SubscriberIndex", "Course");
                     }
-                    return View();
                 }
+                return View();
             }
             catch
             {

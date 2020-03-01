@@ -1,5 +1,5 @@
 ﻿using System;
-namespace CoursePortal.Models
+namespace CoursePortal.Entities
 {
     public class Subscription
     {

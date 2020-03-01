@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using CoursePortal.Context;
-using CoursePortal.Models;
+using CoursePortal.Entities;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace CoursePortal.Repository
@@ -21,14 +22,20 @@ namespace CoursePortal.Repository
             _courseContext.SaveChanges();
             return createdAuthor;
         }
-        public Author FindById(int id)
+        public Author Read(int id)
         {
-            return _courseContext.Authors.Where(auth => auth.Id == id).SingleOrDefault();
+            return _courseContext.Authors
+                .Include(auth => auth.Courses)
+                .ToList()
+                .Find(auth => auth.Id == id);
         }
 
         public Author FindByLogin(string login)
         {
-            return _courseContext.Authors.Where(auth => auth.Login == login).SingleOrDefault();
+            return _courseContext.Authors
+                .Include(auth => auth.Courses)
+                .ToList()
+                .Find(auth => auth.Login == login);
         }
 
     }

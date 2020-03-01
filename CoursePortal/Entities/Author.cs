@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CoursePortal.Models
+namespace CoursePortal.Entities
 {
     public class Author
     {

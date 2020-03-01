@@ -1,4 +1,4 @@
-﻿using CoursePortal.Models;
+﻿using CoursePortal.Entities;
 using System.Data.Entity;
 
 namespace CoursePortal.Context

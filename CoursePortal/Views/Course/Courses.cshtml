@@ -45,7 +45,7 @@
                         <td>
                             @if (Model.user.isAuthor)
                             {
-                                @Html.ActionLink("Unsubscribe", "RemoveCourse", new { id = course.Id })
+                                @Html.ActionLink("Remove Course", "RemoveCourse", new { id = course.Id })
                             }
                             else
                             {

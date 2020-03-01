@@ -17,7 +17,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Context\" />
-    <Folder Include="Repository\" />
     <Folder Include="Views\User\" />
     <Folder Include="Entities\" />
     <Folder Include="Views\Course\" />

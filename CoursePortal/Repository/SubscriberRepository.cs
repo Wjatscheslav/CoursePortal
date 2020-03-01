@@ -1,6 +1,8 @@
 ﻿using System;
 using CoursePortal.Context;
-using CoursePortal.Models;
+using CoursePortal.Entities;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace CoursePortal.Repository
@@ -21,14 +23,20 @@ namespace CoursePortal.Repository
 
             return createdSubscriber;
         }
-        public Subscriber FindById(int id)
+        public Subscriber Read(int id)
         {
-            return _courseContext.Subscribers.Where(subs => subs.Id == id).SingleOrDefault();
+            return _courseContext.Subscribers
+                .Include(subs => subs.Subscriptions)
+                .ToList()
+                .Find(subs => subs.Id == id);
         }
 
         public Subscriber FindByLogin(string login)
         {
-            return _courseContext.Subscribers.Where(subs => subs.Login == login).SingleOrDefault();
+            return _courseContext.Subscribers
+                .Include(subs => subs.Subscriptions)
+                .ToList()
+                .Find(subs => subs.Login == login);
         }
     }
 

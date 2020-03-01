@@ -1,6 +1,6 @@
 ﻿using System;
 using CoursePortal.Context;
-using CoursePortal.Models;
+using CoursePortal.Entities;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -29,6 +29,7 @@ namespace CoursePortal.Repository
             return _courseContext.Courses
                 .Include(course => course.Author)
                 .Include(course => course.Subscriptions)
+                .Include(course => course.Subject)
                 .ToList()
                 .Find(rec => rec.Id == id);
         }
@@ -38,6 +39,7 @@ namespace CoursePortal.Repository
             return _courseContext.Courses
                 .Include(course => course.Author)
                 .Include(course => course.Subscriptions)
+                .Include(course => course.Subject)
                 .ToList();
         }
 
@@ -59,7 +61,8 @@ namespace CoursePortal.Repository
         }
 
         private void UpdateCourse(Course courseToUpdate, Course course)
-        {
+        { 
+            courseToUpdate.Id = course.Id;
             courseToUpdate.Name = course.Name;
             courseToUpdate.Description = course.Description;
         }
