@@ -9,7 +9,12 @@
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
         <hr />
-        @Html.ValidationSummary(true, "Login or password is incorrect", new { @class = "text-danger" })
+
+        @if (ViewBag.HasErrors == true)
+        {
+            string loginError = ViewBag.LoginError;
+            @Html.Label("", loginError, new { @class = "text-danger" });
+        }
 
         <div class="form-group">
             @Html.LabelFor(model => model.Login)
@@ -22,7 +27,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Password)
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Password)
+                @Html.PasswordFor(model => model.Password)
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>

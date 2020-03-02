@@ -72,13 +72,6 @@
 /Users/viacheslav/Documents/CoursePortal/CoursePortal/obj/Debug/netcoreapp3.1/Razor/Views/Course/Unsubscribe.cshtml.g.cs
 /Users/viacheslav/Documents/CoursePortal/CoursePortal/obj/Debug/netcoreapp3.1/Razor/Views/Course/AvailableCourses.cshtml.g.cs
 /Users/viacheslav/Documents/CoursePortal/CoursePortal/obj/Debug/netcoreapp3.1/Razor/Views/Course/AddCourse.cshtml.g.cs
-C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\CoursePortal.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\CoursePortal.RazorAssemblyInfo.cache
-C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\CoursePortal.RazorAssemblyInfo.cs
-C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\CoursePortal.AssemblyInfoInputs.cache
-C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\CoursePortal.AssemblyInfo.cs
-C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\CoursePortal.dll
-C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\CoursePortal.pdb
 C:\Users\user\Documents\CoursePortal\CoursePortal\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\user\Documents\CoursePortal\CoursePortal\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\user\Documents\CoursePortal\CoursePortal\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
@@ -117,6 +110,11 @@ C:\Users\user\Documents\CoursePortal\CoursePortal\bin\Debug\netcoreapp3.1\runtim
 C:\Users\user\Documents\CoursePortal\CoursePortal\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\user\Documents\CoursePortal\CoursePortal\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\user\Documents\CoursePortal\CoursePortal\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\CoursePortal.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\CoursePortal.RazorAssemblyInfo.cache
+C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\CoursePortal.RazorAssemblyInfo.cs
+C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\CoursePortal.AssemblyInfoInputs.cache
+C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\CoursePortal.AssemblyInfo.cs
 C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\CoursePortal.TagHelpers.input.cache
 C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\CoursePortal.TagHelpers.output.cache
 C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\CoursePortal.RazorCoreGenerate.cache
@@ -140,4 +138,6 @@ C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\Course
 C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\CoursePortal.csproj.CopyComplete
 C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\staticwebassets\CoursePortal.StaticWebAssets.Manifest.cache
 C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\staticwebassets\CoursePortal.StaticWebAssets.xml
+C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\CoursePortal.dll
+C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\CoursePortal.pdb
 C:\Users\user\Documents\CoursePortal\CoursePortal\obj\Debug\netcoreapp3.1\CoursePortal.csprojAssemblyReference.cache

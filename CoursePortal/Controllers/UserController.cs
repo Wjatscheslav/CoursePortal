@@ -40,11 +40,8 @@ namespace CoursePortal.Controllers
                     {
                         HttpContext.Session.Set("userId", BitConverter.GetBytes(author.Id));
                         HttpContext.Session.Set("isAuth", BitConverter.GetBytes(true));
+                        ViewBag.HasErrors = false;
                         return RedirectToAction("AuthorIndex", "Course");
-                    }
-                    else
-                    {
-                        ModelState.AddModelError(user.Password, "Login or password is incorrect");
                     }
                 }
                 Subscriber subscriber = subscriberRepository.FindByLogin(login);
@@ -54,17 +51,19 @@ namespace CoursePortal.Controllers
                     {
                         HttpContext.Session.Set("userId", BitConverter.GetBytes(subscriber.Id));
                         HttpContext.Session.Set("isAuth", BitConverter.GetBytes(false));
+                        ViewBag.HasErrors = false;
                         return RedirectToAction("SubscriberIndex", "Course");
                     }
-                    else
-                    {
-                        ModelState.AddModelError(user.Password, "Login or password is incorrect");
-                    }
                 }
+                ViewBag.HasErrors = true;
+                ViewBag.LoginError = "Login or password is incorrect";
+
                 return View(user);
             }
             catch
             {
+                ViewBag.HasErrors = true;
+                ViewBag.LoginError = "Something went wrong. Please contact your system administrator";
                 return View(user);
             }
         }
