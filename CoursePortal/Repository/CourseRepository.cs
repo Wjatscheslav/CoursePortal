@@ -60,6 +60,14 @@ namespace CoursePortal.Repository
             return course;
         }
 
+        public List<Course> FullTextSearch(string name, String desc)
+        {
+            string query = string.Format("Select * From Courses Where Name LIKE '%{0}%' OR Description LIKE '%{1}%'", name, desc);
+            List<Course> courses = _courseContext.Database.SqlQuery<Course>(query).ToList();
+
+            return courses;
+        }
+
         private void UpdateCourse(Course courseToUpdate, Course course)
         { 
             courseToUpdate.Id = course.Id;

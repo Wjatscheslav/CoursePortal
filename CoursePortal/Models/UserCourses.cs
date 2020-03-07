@@ -7,5 +7,6 @@ namespace CoursePortal.Models
     {
         public User user { get; set; }
         public List<CourseModel> courses { get; set; }
+        public string filterBy { get; set; }
     }
 }

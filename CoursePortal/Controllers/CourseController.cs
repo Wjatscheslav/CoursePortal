@@ -57,16 +57,13 @@ namespace CoursePortal.Controllers
             if (user.isAuthor)
             {
                 courses = authorRepository.Read(userId).Courses
-                    .ToList()
                     .Select(course => ToCourseModel(course))
                     .ToList();
             }
             else
             {
                 courses = subscriptionRepository.FindByUserId(userId)
-                    .ToList()
                     .Select(subs => courseRepository.Read(subs.CourseId))
-                    .ToList()
                     .Select(course => ToCourseModel(course))
                     .ToList();
             }
@@ -75,6 +72,48 @@ namespace CoursePortal.Controllers
             userCourses.courses = courses;
 
             return View(userCourses);
+        }
+
+        [HttpPost]
+        public IActionResult Courses(UserCourses userCourses)
+        {
+            int userId = BitConverter.ToInt32(HttpContext.Session.Get("userId"));
+            User user = GetUserById(userId);
+            List<CourseModel> selectedCourses = GetSelectedCourses(user);
+            List<Course> coursesFound = courseRepository.FullTextSearch(userCourses.filterBy, userCourses.filterBy);
+            List<CourseModel> filteredCourses = selectedCourses
+                .Where(course => ContainsCourse(coursesFound, course.Id))
+                .ToList();
+
+            UserCourses filtered = new UserCourses();
+            filtered.user = user;
+            filtered.courses = filteredCourses;
+
+            return View(filtered);
+        }
+
+        private List<CourseModel> GetSelectedCourses(User user)
+        {
+            if (user.isAuthor)
+            {
+                return authorRepository.Read(user.Id).Courses
+                    .Select(course => ToCourseModel(course))
+                    .ToList();
+            }
+            else
+            {
+                return subscriptionRepository.FindByUserId(user.Id)
+                    .Select(subs => courseRepository.Read(subs.CourseId))
+                    .Select(course => ToCourseModel(course))
+                    .ToList();
+            }
+        }
+
+        private Boolean ContainsCourse(List<Course> courses, int courseId)
+        {
+            return courses
+                .Select(course => course.Id)
+                .Contains(courseId);
         }
 
         public IActionResult AddCourse()
@@ -132,6 +171,36 @@ namespace CoursePortal.Controllers
             return View(userCourses);
         }
 
+        [HttpPost]
+        public IActionResult AvailableCourses(UserCourses userCourses)
+        {
+            int userId = BitConverter.ToInt32(HttpContext.Session.Get("userId"));
+            List<CourseModel> availableCourses = GetAvailableCourses(userId);
+            User user = GetUserById(userId);
+
+            List<Course> coursesFound = courseRepository.FullTextSearch(userCourses.filterBy, userCourses.filterBy);
+            List<CourseModel> filteredCourses = availableCourses
+                .Where(course => ContainsCourse(coursesFound, course.Id))
+                .ToList();
+
+            UserCourses filtered = new UserCourses();
+            filtered.user = user;
+            filtered.courses = filteredCourses;
+            return View(filtered);
+        }
+
+        private List<CourseModel> GetAvailableCourses(int userId)
+        {
+            List<int> addedCourseIds = subscriptionRepository.FindByUserId(userId)
+                .Select(subs => subs.CourseId)
+                .ToList();
+            
+            return courseRepository.ReadAll()
+                .Where(course => !addedCourseIds.Contains(course.Id))
+                .Select(course => ToCourseModel(course))
+                .ToList();
+        }
+
         public IActionResult Subscribe(int id)
         {
             Subscription subscription = new Subscription();
@@ -165,12 +234,14 @@ namespace CoursePortal.Controllers
             if (isAuth)
             {
                 Author author = authorRepository.Read(userId);
+                user.Id = author.Id;
                 user.Login = author.Login;
                 user.Name = author.Name;
             }
             else
             {
                 Subscriber subscriber = subscriberRepository.Read(userId);
+                user.Id = subscriber.Id;
                 user.Login = subscriber.Login;
                 user.Name = subscriber.Name;
             }
