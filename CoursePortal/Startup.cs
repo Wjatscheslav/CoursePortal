@@ -1,10 +1,8 @@
 using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using CoursePortal.Repository;
 using CoursePortal.Context;
 
@@ -23,7 +21,7 @@ namespace CoursePortal
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<CourseContext>();
-            services.AddScoped<SubscriptionRepository>();
+            services.AddSingleton<SubscriptionRepository>();
             services.AddSingleton<SubscriberRepository>();
             services.AddSingleton<AuthorRepository>();
             services.AddSingleton<CourseRepository>();

@@ -33,7 +33,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.SubjectName)
                     <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.SubjectName, new SelectList(subjects));
+                        @Html.DropDownListFor(model => model.SubjectName, new SelectList(subjects))
                         @Html.ValidationMessageFor(model => model.SubjectName, "", new { @class = "text-danger" })
                     </div>
                 </div>

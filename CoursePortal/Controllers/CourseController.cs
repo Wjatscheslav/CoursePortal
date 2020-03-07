@@ -118,9 +118,12 @@ namespace CoursePortal.Controllers
 
         public IActionResult AddCourse()
         {
-            List<string> subjects = subjectRepository.ReadAll()
-                .Select(subj => subj.Name)
-                .ToList();
+            List<string> subjects = new List<string>() {
+                "Math",
+                "Data Science",
+                "Programming",
+                "Drawing"
+            };
             ViewBag.Subjects = subjects;
             return View();
         }
@@ -133,6 +136,12 @@ namespace CoursePortal.Controllers
                 return View(courseModel);
             }
             Subject subject = subjectRepository.FindByName(courseModel.SubjectName);
+            if (subject == null)
+            {
+                subject = new Subject();
+                subject.Name = courseModel.SubjectName;
+                subject = subjectRepository.Create(subject);
+            }
             Course course = new Course();
             course.Name = courseModel.Name;
             course.Description = courseModel.Description;

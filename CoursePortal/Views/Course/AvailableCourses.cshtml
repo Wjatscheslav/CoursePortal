@@ -5,20 +5,13 @@
         <h1 class="display-4">Available Courses</h1>
         @using (Html.BeginForm())
         {
-            <div class="form-group">
-                @Html.LabelFor(model => model.filterBy)
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.filterBy)
-                    @Html.ValidationMessageFor(model => model.filterBy, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @for (int i = 0; i < Model.courses.Count; i++)
-                {
-                    @Html.HiddenFor(model => Model.courses[i]);
-                }
-            </div>
+    <div class="form-group">
+        <label>Filter By:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.filterBy)
+            @Html.ValidationMessageFor(model => model.filterBy, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">

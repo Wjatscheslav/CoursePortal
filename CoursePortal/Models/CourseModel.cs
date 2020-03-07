@@ -10,7 +10,6 @@ namespace CoursePortal.Models
         public string Name { get; set; }
         [Required]
         public string Description { get; set; }
-        [Required]
         public string AuthorName { get; set; }
         [Required] 
         public string SubjectName { get; set; }

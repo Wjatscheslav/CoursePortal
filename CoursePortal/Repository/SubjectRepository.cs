@@ -17,6 +17,14 @@ namespace CoursePortal.Repository
             _courseContext = courseContext;
         }
 
+        public Subject Create(Subject subject)
+        {
+            Subject createdSubject = _courseContext.Subjects.Add(subject);
+            _courseContext.SaveChanges();
+
+            return createdSubject;
+        }
+
         public Subject Read(int id)
         {
             return _courseContext.Subjects
